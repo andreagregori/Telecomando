@@ -14,11 +14,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="33dp"
+        android:layout_marginEnd="270dp"
         android:layout_marginStart="60dp"
         android:adjustViewBounds="false"
         android:backgroundTint="@android:color/white"
         android:cropToPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnFreno"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/leftarrow" />
 
@@ -33,5 +35,30 @@
         app:layout_constraintTop_toTopOf="@+id/btnSinistra"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/rightarrow" />
+
+    <ImageButton
+        android:id="@+id/btnFreno"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="33dp"
+        android:layout_marginEnd="79dp"
+        android:backgroundTint="?attr/colorBackgroundFloating"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnSinistra"
+        app:layout_constraintTop_toBottomOf="@+id/btnGas"
+        app:srcCompat="@drawable/freno" />
+
+    <ImageButton
+        android:id="@+id/btnGas"
+        android:layout_width="95dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="45dp"
+        android:layout_marginTop="61dp"
+        android:backgroundTint="?attr/colorBackgroundFloating"
+        app:layout_constraintBottom_toTopOf="@+id/btnFreno"
+        app:layout_constraintStart_toStartOf="@+id/btnFreno"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/gas" />
 
 </android.support.constraint.ConstraintLayout>
