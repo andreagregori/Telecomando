@@ -14,8 +14,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
 
-public class MainActivity extends AppCompatActivity {
-    ImageButton btnSx, btndx;
+public class MainActivity extends AppCompatActivity implements View.OnTouchListener{
+    ImageButton btnSx, btndx, btnGas, btnFreno;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,16 +26,18 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         btnSx = findViewById(R.id.btnSinistra);
-        btnSx.setOnTouchListener(new View.OnTouchListener() {
+        btnSx.setOnTouchListener(this);
+      /*  btnSx.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 Log.i("direzione", "sinistra");
                 return false;
             }
-        });
+        });*/
 
         btndx = findViewById(R.id.btnDestra);
-        btndx.setOnTouchListener(new View.OnTouchListener() {
+        btndx.setOnTouchListener(this);
+      /*  btndx.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent evt) {
                 switch (evt.getAction()) {
@@ -51,8 +53,32 @@ public class MainActivity extends AppCompatActivity {
                 }
                 return true;
             }
-        });
+        });*/
+        btnGas = findViewById(R.id.btnGas);
+        btnGas.setOnTouchListener(this);
 
+        btnFreno = findViewById(R.id.btnFreno);
+        btnFreno.setOnTouchListener(this);
+
+    }
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        if (v.getId()==btnSx.getId()){
+            Log.i("direzione", "sinistra");
+        }
+
+        if (v.getId()==btndx.getId()){
+            Log.i("direzione", "destra");
+        }
+
+        if (v.getId()==btnGas.getId()){
+            Log.i("direzione", "gas");
+        }
+
+        if (v.getId()==btnFreno.getId()){
+            Log.i("direzione", "freno");
+        }
+        return true;
     }
 
     @Override
