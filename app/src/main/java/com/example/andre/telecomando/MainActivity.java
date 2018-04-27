@@ -20,9 +20,14 @@ import java.io.*;
 
 public class MainActivity extends AppCompatActivity implements View.OnTouchListener{
     ImageButton btnSx, btndx, btnGas, btnFreno;
+    private Socket socket;
+    private static final int SERVERPORT = 1999;
+    private static final String SERVER_IP = "192.168.42.1";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.i("ciclo di vita", "onCreate");
         super.onCreate(savedInstanceState);                                                 //Caricamento grafica
         setContentView(R.layout.activity_main);                                             //Visualizzazione grafica
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);            //Per bloccare la activity in landscape (orizzontale)
@@ -31,39 +36,15 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
         btnSx = findViewById(R.id.btnSinistra);
         btnSx.setOnTouchListener(this);
-      /*  btnSx.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                Log.i("direzione", "sinistra");
-                return false;
-            }
-        });*/
 
         btndx = findViewById(R.id.btnDestra);
         btndx.setOnTouchListener(this);
-      /*  btndx.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent evt) {
-                switch (evt.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        Log.i("direzione", "destra");
-                        break;
-                    case MotionEvent.ACTION_UP:
-                        Log.i("direzione", "stop");
-                        view.performClick();
-                        break;
-                    default:
-                        break;
-                }
-                return true;
-            }
-        });*/
+
         btnGas = findViewById(R.id.btnGas);
         btnGas.setOnTouchListener(this);
 
         btnFreno = findViewById(R.id.btnFreno);
         btnFreno.setOnTouchListener(this);
-
     }
     @Override
     public boolean onTouch(View v, MotionEvent event) {
@@ -71,27 +52,12 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
                     Log.i("direzione", "sinistra");
-                    String sentence;
-                    BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
-                    Socket s;
-                    try {
-                        InetAddress ip = InetAddress.getByName("192.168.42.1"); //192.168.42.1
-                        s = new Socket(ip, 1999);
-                        s.getOutputStream().write(1);
-                        s.close();
-                    } catch (UnknownHostException e1) {
-                        System.out.println("Host not found");
-                        e1.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }catch (NetworkOnMainThreadException eN){
-                        Log.i("connessione","errore main");
-                        eN.printStackTrace();
-                    }
+                    new Thread(new ClientThread(1)).start();
                     break;
                 case MotionEvent.ACTION_UP:
                     Log.i("direzione", "stop");
                     v.performClick();
+                    new Thread(new ClientThread(0)).start();
                     break;
                 default:
                     break;
@@ -100,14 +66,53 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
         if (v.getId()==btndx.getId()){
             Log.i("direzione", "destra");
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    Log.i("direzione", "destra");
+                    new Thread(new ClientThread(2)).start();
+                    break;
+                case MotionEvent.ACTION_UP:
+                    Log.i("direzione", "stop");
+                    v.performClick();
+                    new Thread(new ClientThread(0)).start();
+                    break;
+                default:
+                    break;
+            }
         }
 
         if (v.getId()==btnGas.getId()){
             Log.i("direzione", "gas");
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    Log.i("direzione", "gas");
+                    new Thread(new ClientThread(3)).start();
+                    break;
+                case MotionEvent.ACTION_UP:
+                    Log.i("direzione", "stop");
+                    v.performClick();
+                    new Thread(new ClientThread(-1)).start();
+                    break;
+                default:
+                    break;
+            }
         }
 
         if (v.getId()==btnFreno.getId()){
             Log.i("direzione", "freno");
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    Log.i("direzione", "freno");
+                    new Thread(new ClientThread(4)).start();
+                    break;
+                case MotionEvent.ACTION_UP:
+                    Log.i("direzione", "stop");
+                    v.performClick();
+                    new Thread(new ClientThread(-1)).start();
+                    break;
+                default:
+                    break;
+            }
         }
         return true;
     }
@@ -169,4 +174,29 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         Log.i("ciclo di vita", "onDestroy");
         super.onDestroy();
     }
+
+    class ClientThread implements Runnable {
+        private int messaggio;
+
+        public ClientThread(int messaggio){
+            this.messaggio=messaggio;
+        }
+
+        @Override
+        public void run() {
+            try {
+                InetAddress serverIP = InetAddress.getByName(SERVER_IP);
+                socket = new Socket(serverIP, SERVERPORT);
+                Log.i("connessione","connessione");
+                socket.getOutputStream().write(messaggio);
+                Log.i("connessione","invio");
+            } catch (UnknownHostException e1) {
+                e1.printStackTrace();
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+
+        }
+    }
+
 }
