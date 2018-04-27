@@ -13,6 +13,9 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageButton;
+import java.net.*;
+import java.io.*;
+
 
 public class MainActivity extends AppCompatActivity implements View.OnTouchListener{
     ImageButton btnSx, btndx, btnGas, btnFreno;
@@ -65,6 +68,20 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     public boolean onTouch(View v, MotionEvent event) {
         if (v.getId()==btnSx.getId()){
             Log.i("direzione", "sinistra");
+            String sentence;
+            BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
+            Socket s;
+            try {
+                InetAddress ip= InetAddress.getByName("192.168.42.1"); //192.168.42.1
+                s = new Socket(ip, 1999);
+                s.getOutputStream().write(1);
+                s.close();
+            } catch (UnknownHostException e1) {
+                System.out.println("Host not found");
+                e1.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
         if (v.getId()==btndx.getId()){
