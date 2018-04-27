@@ -3,6 +3,7 @@ package com.example.andre.telecomando;
 import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.NetworkOnMainThreadException;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -66,21 +67,34 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     }
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        if (v.getId()==btnSx.getId()){
-            Log.i("direzione", "sinistra");
-            String sentence;
-            BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
-            Socket s;
-            try {
-                InetAddress ip= InetAddress.getByName("192.168.42.1"); //192.168.42.1
-                s = new Socket(ip, 1999);
-                s.getOutputStream().write(1);
-                s.close();
-            } catch (UnknownHostException e1) {
-                System.out.println("Host not found");
-                e1.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
+        if (v.getId()==btnSx.getId()) {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+                    Log.i("direzione", "sinistra");
+                    String sentence;
+                    BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
+                    Socket s;
+                    try {
+                        InetAddress ip = InetAddress.getByName("192.168.42.1"); //192.168.42.1
+                        s = new Socket(ip, 1999);
+                        s.getOutputStream().write(1);
+                        s.close();
+                    } catch (UnknownHostException e1) {
+                        System.out.println("Host not found");
+                        e1.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }catch (NetworkOnMainThreadException eN){
+                        Log.i("connessione","errore main");
+                        eN.printStackTrace();
+                    }
+                    break;
+                case MotionEvent.ACTION_UP:
+                    Log.i("direzione", "stop");
+                    v.performClick();
+                    break;
+                default:
+                    break;
             }
         }
 
