@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                 case MotionEvent.ACTION_UP:
                     Log.i("direzione", "stop");
                     v.performClick();
-                    new Thread(new ClientThread(0)).start();
+                    new Thread(new ClientThread(2)).start();
                     break;
                 default:
                     break;
@@ -69,12 +69,12 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
                     Log.i("direzione", "destra");
-                    new Thread(new ClientThread(2)).start();
+                    new Thread(new ClientThread(3)).start();
                     break;
                 case MotionEvent.ACTION_UP:
                     Log.i("direzione", "stop");
                     v.performClick();
-                    new Thread(new ClientThread(0)).start();
+                    new Thread(new ClientThread(4)).start();
                     break;
                 default:
                     break;
@@ -86,12 +86,12 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
                     Log.i("direzione", "gas");
-                    new Thread(new ClientThread(3)).start();
+                    new Thread(new ClientThread(5)).start();
                     break;
                 case MotionEvent.ACTION_UP:
                     Log.i("direzione", "stop");
                     v.performClick();
-                    new Thread(new ClientThread(-1)).start();
+                    new Thread(new ClientThread(6)).start();
                     break;
                 default:
                     break;
@@ -103,12 +103,12 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
                     Log.i("direzione", "freno");
-                    new Thread(new ClientThread(4)).start();
+                    new Thread(new ClientThread(7)).start();
                     break;
                 case MotionEvent.ACTION_UP:
                     Log.i("direzione", "stop");
                     v.performClick();
-                    new Thread(new ClientThread(-1)).start();
+                    new Thread(new ClientThread(8)).start();
                     break;
                 default:
                     break;
