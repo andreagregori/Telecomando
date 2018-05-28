@@ -1,27 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.andre.telecomando.MainActivity">
+    android:theme="@style/AppTheme"
+    android:background="@drawable/background">
 
-
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
+    <ImageButton
+        android:id="@+id/btnSinistra"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_marginBottom="33dp"
+        android:layout_marginEnd="270dp"
+        android:layout_marginStart="60dp"
+        android:adjustViewBounds="false"
+        android:backgroundTint="@android:color/white"
+        android:cropToPadding="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnFreno"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/leftarrow" />
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+    <ImageButton
+        android:id="@+id/btnDestra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:backgroundTint="?attr/colorBackgroundFloating"
+        app:layout_constraintBottom_toBottomOf="@+id/btnSinistra"
+        app:layout_constraintStart_toEndOf="@+id/btnSinistra"
+        app:layout_constraintTop_toTopOf="@+id/btnSinistra"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/rightarrow" />
 
-    </android.support.design.widget.AppBarLayout>
+    <ImageButton
+        android:id="@+id/btnFreno"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="33dp"
+        android:layout_marginEnd="79dp"
+        android:backgroundTint="?attr/colorBackgroundFloating"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnSinistra"
+        app:layout_constraintTop_toBottomOf="@+id/btnGas"
+        app:srcCompat="@drawable/freno" />
 
-    <include layout="@layout/content_main" />
+    <ImageButton
+        android:id="@+id/btnGas"
+        android:layout_width="95dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="45dp"
+        android:layout_marginTop="61dp"
+        android:backgroundTint="?attr/colorBackgroundFloating"
+        app:layout_constraintBottom_toTopOf="@+id/btnFreno"
+        app:layout_constraintStart_toStartOf="@+id/btnFreno"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/gas" />
 
-</android.support.design.widget.CoordinatorLayout>
+</android.support.constraint.ConstraintLayout>
