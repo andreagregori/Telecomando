@@ -95,4 +95,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/gas" />
 
+    <ImageButton
+        android:id="@+id/btnSpegni"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/ic_lock_power_off"
+        tools:layout_editor_absoluteX="519dp"
+        tools:layout_editor_absoluteY="16dp" />
+
 </android.support.constraint.ConstraintLayout>

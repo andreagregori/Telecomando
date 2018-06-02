@@ -18,8 +18,8 @@ import java.net.*;
 import java.io.*;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnTouchListener{
-    ImageButton btnSx, btndx, btnGas, btnFreno;
+public class MainActivity extends AppCompatActivity implements View.OnTouchListener, View.OnClickListener{
+    ImageButton btnSx, btndx, btnGas, btnFreno, btnSpegni;
     private Socket socket;
     private static final int SERVERPORT = 1999;
     private static final String SERVER_IP = "192.168.42.1";
@@ -31,6 +31,9 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         super.onCreate(savedInstanceState);                                                 //Caricamento grafica
         setContentView(R.layout.activity_main);                                             //Visualizzazione grafica
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);            //Per bloccare la activity in landscape (orizzontale)
+
+        btnSpegni = findViewById(R.id.btnSpegni);
+        btnSpegni.setOnClickListener(this);
 
         btnSx = findViewById(R.id.btnSinistra);
         btnSx.setOnTouchListener(this);
@@ -44,6 +47,14 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         btnFreno = findViewById(R.id.btnFreno);
         btnFreno.setOnTouchListener(this);
     }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId()==btnSpegni.getId()){
+            new Thread(new ClientThread(0)).start();
+        }
+    }
+
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         if (v.getId()==btnSx.getId()) {
