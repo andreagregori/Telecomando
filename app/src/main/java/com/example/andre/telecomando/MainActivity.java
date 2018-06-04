@@ -18,8 +18,8 @@ import java.net.*;
 import java.io.*;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnTouchListener, View.OnClickListener{
-    ImageButton btnSx, btndx, btnGas, btnFreno, btnSpegni;
+public class MainActivity extends AppCompatActivity implements View.OnTouchListener {
+    ImageButton btnSx, btnDx, btnGas, btnFreno, btnSpegni;
     private Socket socket;
     private static final int SERVERPORT = 1999;
     private static final String SERVER_IP = "192.168.42.1";
@@ -33,13 +33,13 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);            //Per bloccare la activity in landscape (orizzontale)
 
         btnSpegni = findViewById(R.id.btnSpegni);
-        btnSpegni.setOnClickListener(this);
+        btnSpegni.setOnTouchListener(this);
 
         btnSx = findViewById(R.id.btnSinistra);
         btnSx.setOnTouchListener(this);
 
-        btndx = findViewById(R.id.btnDestra);
-        btndx.setOnTouchListener(this);
+        btnDx = findViewById(R.id.btnDestra);
+        btnDx.setOnTouchListener(this);
 
         btnGas = findViewById(R.id.btnGas);
         btnGas.setOnTouchListener(this);
@@ -49,79 +49,137 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     }
 
     @Override
-    public void onClick(View v) {
-        if (v.getId()==btnSpegni.getId()){
-            new Thread(new ClientThread(0)).start();
-        }
-    }
-
-    @Override
     public boolean onTouch(View v, MotionEvent event) {
-        if (v.getId()==btnSx.getId()) {
-            switch (event.getAction()) {
-                case MotionEvent.ACTION_DOWN:
+
+        switch (v.getId()) {
+            case R.id.btnSinistra:
+                if(event.getAction() == MotionEvent.ACTION_DOWN) {
                     Log.i("direzione", "sinistra");
+
+                    float x = (float) 0.85;
+                    float y = (float) 0.85;
+
+                    btnSx.setScaleX(x);
+                    btnSx.setScaleY(y);
+
                     new Thread(new ClientThread(1)).start();
-                    break;
-                case MotionEvent.ACTION_UP:
+
+                } else if(event.getAction() == MotionEvent.ACTION_UP) {
                     Log.i("direzione", "stop");
+
+                    float x = 1;
+                    float y = 1;
+
+                    btnSx.setScaleX(x);
+                    btnSx.setScaleY(y);
+
                     v.performClick();
                     new Thread(new ClientThread(2)).start();
-                    break;
-                default:
-                    break;
-            }
-        }
 
-        if (v.getId()==btndx.getId()){
-            Log.i("direzione", "destra");
-            switch (event.getAction()) {
-                case MotionEvent.ACTION_DOWN:
+                }
+                break;
+
+            case R.id.btnDestra:
+                if(event.getAction() == MotionEvent.ACTION_DOWN) {
+
                     Log.i("direzione", "destra");
+
+                    float x = (float) 0.85;
+                    float y = (float) 0.85;
+
+                    btnDx.setScaleX(x);
+                    btnDx.setScaleY(y);
+
                     new Thread(new ClientThread(3)).start();
-                    break;
-                case MotionEvent.ACTION_UP:
+
+                } else if(event.getAction() == MotionEvent.ACTION_UP) {
                     Log.i("direzione", "stop");
+
+                    float x = 1;
+                    float y = 1;
+
+                    btnDx.setScaleX(x);
+                    btnDx.setScaleY(y);
+
                     v.performClick();
                     new Thread(new ClientThread(4)).start();
-                    break;
-                default:
-                    break;
-            }
-        }
+                }
+                break;
 
-        if (v.getId()==btnGas.getId()){
-            Log.i("direzione", "gas");
-            switch (event.getAction()) {
-                case MotionEvent.ACTION_DOWN:
+            case R.id.btnGas:
+                if(event.getAction() == MotionEvent.ACTION_DOWN) {
                     Log.i("direzione", "gas");
+
+                    float x = (float) 0.85;
+                    float y = (float) 0.85;
+
+                    btnGas.setScaleX(x);
+                    btnGas.setScaleY(y);
+
                     new Thread(new ClientThread(5)).start();
-                    break;
-                case MotionEvent.ACTION_UP:
+
+                } else if(event.getAction() == MotionEvent.ACTION_UP) {
                     Log.i("direzione", "stop");
+
+                    float x = 1;
+                    float y = 1;
+
+                    btnGas.setScaleX(x);
+                    btnGas.setScaleY(y);
+
                     v.performClick();
                     new Thread(new ClientThread(6)).start();
-                    break;
-                default:
-                    break;
-            }
-        }
+                }
+                break;
 
-        if (v.getId()==btnFreno.getId()){
-            Log.i("direzione", "freno");
-            switch (event.getAction()) {
-                case MotionEvent.ACTION_DOWN:
+            case R.id.btnFreno:
+                if(event.getAction() == MotionEvent.ACTION_DOWN) {
                     Log.i("direzione", "freno");
+
+                    float x = (float) 0.85;
+                    float y = (float) 0.85;
+
+                    btnFreno.setScaleX(x);
+                    btnFreno.setScaleY(y);
+
                     new Thread(new ClientThread(7)).start();
-                    break;
-                case MotionEvent.ACTION_UP:
+
+                } else if(event.getAction() == MotionEvent.ACTION_UP) {
                     Log.i("direzione", "stop");
+
+                    float x = 1;
+                    float y = 1;
+
+                    btnFreno.setScaleX(x);
+                    btnFreno.setScaleY(y);
+
                     v.performClick();
                     new Thread(new ClientThread(8)).start();
-                    break;
-                default:
-                    break;
-            }
+                }
+                break;
+
+            case R.id.btnSpegni:
+                if(event.getAction() == MotionEvent.ACTION_DOWN) {
+
+                    float x = (float) 0.85;
+                    float y = (float) 0.85;
+
+                    btnSpegni.setScaleX(x);
+                    btnSpegni.setScaleY(y);
+
+                } else if(event.getAction() == MotionEvent.ACTION_UP) {
+
+                    float x = 1;
+                    float y = 1;
+
+                    btnSpegni.setScaleX(x);
+                    btnSpegni.setScaleY(y);
+
+                    new Thread(new ClientThread(0)).start();
+
+                    finish();
+                }
+                break;
         }
         return true;
     }
