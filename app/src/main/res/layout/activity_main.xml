@@ -17,7 +17,7 @@
         android:layout_marginTop="2dp"
         android:fontFamily="@font/holtwood_one_sc"
         android:gravity="center"
-        android:text="Design by Nicola Bortolan"
+        android:text=""
         android:textColor="#ffffff"
         android:textSize="10dp"
         app:layout_constraintBottom_toTopOf="@+id/textView"

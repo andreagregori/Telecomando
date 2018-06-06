@@ -1,11 +1,13 @@
 package com.example.andre.telecomando;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.NetworkOnMainThreadException;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -175,9 +177,20 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                     btnSpegni.setScaleX(x);
                     btnSpegni.setScaleY(y);
 
-                    new Thread(new ClientThread(0)).start();
-
-                    finish();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setMessage("Sei sicuro di voler spegnere?")
+                            .setCancelable(false)
+                            .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    //new Thread(new ClientThread(0)).start();
+                                    finish();
+                                }
+                            });
+                    builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {}
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
                 }
                 break;
         }
