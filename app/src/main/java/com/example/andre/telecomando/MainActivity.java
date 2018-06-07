@@ -21,7 +21,7 @@ import java.io.*;
 
 
 public class MainActivity extends AppCompatActivity implements View.OnTouchListener {
-    ImageButton btnSx, btnDx, btnGas, btnFreno, btnSpegni;
+    ImageButton btnSx, btnDx, btnGas, btnFreno, btnSpegni, btnHelp;
     private Socket socket;
     private static final int SERVERPORT = 1999;
     private static final String SERVER_IP = "192.168.42.1";
@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
 
         btnSpegni = findViewById(R.id.btnSpegni);
         btnSpegni.setOnTouchListener(this);
+
+        btnHelp = findViewById(R.id.btnHelp);
+        btnHelp.setOnTouchListener(this);
 
         btnSx = findViewById(R.id.btnSinistra);
         btnSx.setOnTouchListener(this);
@@ -182,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                             .setCancelable(false)
                             .setPositiveButton("Si", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    //new Thread(new ClientThread(0)).start();
+                                    new Thread(new ClientThread(0)).start();
                                     finish();
                                 }
                             });
@@ -191,6 +194,27 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                     });
                     AlertDialog alert = builder.create();
                     alert.show();
+                }
+                break;
+            case R.id.btnHelp:
+                if(event.getAction() == MotionEvent.ACTION_DOWN) {
+                    float x = (float) 0.85;
+                    float y = (float) 0.85;
+
+                    btnHelp.setScaleX(x);
+                    btnHelp.setScaleY(y);
+
+                    //Cambio activity
+
+                } else if(event.getAction() == MotionEvent.ACTION_UP) {
+
+                    float x = 1;
+                    float y = 1;
+
+                    btnHelp.setScaleX(x);
+                    btnHelp.setScaleY(y);
+
+                    v.performClick();
                 }
                 break;
         }
