@@ -119,6 +119,8 @@
         android:id="@+id/btnHelp"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        app:layout_editor_absoluteX="15dp"
+        app:layout_editor_absoluteY="15dp"
         android:background="@drawable/button"
         android:layout_marginBottom="132dp"
         android:layout_marginEnd="25dp"

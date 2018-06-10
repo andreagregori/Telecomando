@@ -1,9 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.andre.telecomando.InfoActivity">
 
-</android.support.constraint.ConstraintLayout>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@drawable/background"
+android:theme="@style/AppTheme"
+tools:context="com.example.andre.telecomando.InfoActivity">
+
+
+    <ImageButton
+        android:id="@+id/btnSinistra"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_x="28dp"
+        android:layout_y="76dp"
+        android:adjustViewBounds="false"
+        android:background="@drawable/button"
+        android:backgroundTint="@android:color/white"
+        android:cropToPadding="false"
+        app:srcCompat="@drawable/leftarrow" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="140dp"
+        android:layout_y="100dp"
+        android:fontFamily="@font/holtwood_one_sc"
+        android:text="Sterza a sinistra"
+        android:textColor="#ffffff"
+        android:textSize="13dp" />
+
+    <ImageButton
+        android:id="@+id/btnDestra"
+        android:layout_width="100dp"
+        android:layout_height="70dp"
+        android:layout_x="329dp"
+        android:layout_y="76dp"
+        android:background="@drawable/button"
+        android:backgroundTint="?attr/colorBackgroundFloating"
+        app:srcCompat="@drawable/rightarrow" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="442dp"
+        android:layout_y="100dp"
+        android:fontFamily="@font/holtwood_one_sc"
+        android:text="Sterza a destra"
+        android:textColor="#ffffff"
+        android:textSize="13dp" />
+
+    <ImageButton
+        android:id="@+id/btnGas"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_x="30dp"
+        android:layout_y="189dp"
+        android:background="@drawable/button"
+        android:backgroundTint="?attr/colorBackgroundFloating"
+        app:srcCompat="@drawable/gas" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="142dp"
+        android:layout_y="225dp"
+        android:fontFamily="@font/holtwood_one_sc"
+        android:text="Vai avanti"
+        android:textColor="#ffffff"
+        android:textSize="13dp" />
+
+    <ImageButton
+        android:id="@+id/btnFreno"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_x="331dp"
+        android:layout_y="189dp"
+        android:background="@drawable/button"
+        android:backgroundTint="?attr/colorBackgroundFloating"
+        app:srcCompat="@drawable/freno" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="444dp"
+        android:layout_y="225dp"
+        android:fontFamily="@font/holtwood_one_sc"
+        android:text="Vai indietro"
+        android:textColor="#ffffff"
+        android:textSize="13dp" />
+
+</AbsoluteLayout>

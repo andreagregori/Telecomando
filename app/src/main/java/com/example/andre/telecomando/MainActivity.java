@@ -2,6 +2,7 @@ package com.example.andre.telecomando;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.NetworkOnMainThreadException;
@@ -204,7 +205,8 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
                     btnHelp.setScaleX(x);
                     btnHelp.setScaleY(y);
 
-                    //Cambio activity
+                    Intent i = new Intent(this, InfoActivity.class);
+                    startActivity(i);
 
                 } else if(event.getAction() == MotionEvent.ACTION_UP) {
 
